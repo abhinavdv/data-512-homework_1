@@ -6,7 +6,7 @@
 
 ### Title: Professionalism & Reproducibility
 
-## Project Goal
+## Goal
 
 This project aims to construct and analyze a dataset of monthly article traffic for selected Wikipedia pages from July 1, 2015, to September 30, 2024. The dataset provides insights into page view trends, enabling the analysis of article popularity and traffic patterns for both desktop and mobile devices.
 
