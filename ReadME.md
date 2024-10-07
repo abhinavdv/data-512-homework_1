@@ -36,17 +36,13 @@ Code snippets in Wikipedia_article_analysis.ipynb are adapted from examples deve
 
 ## Generated Files
 
-Executing Wikipedia_article_analysis.ipynb generates multiple time series datasets reflecting monthly activity for articles in rare-disease_cleaned.AUG.2024.csv, focusing on user page views. The data is structured as follows:
-
-- Format: JSON Files
-- Organization: Article titles serve as keys for the time series data.
-- Content: Time series of monthly record data for each article.
+Executing Wikipedia_article_analysis.ipynb generates multiple time series datasets reflecting monthly activity for articles in rare-disease_cleaned.AUG.2024.csv, focusing on user page views. Each file is of JSON type. The data is structured into three files names as follows:
 
 1. rare-disease_monthly_cumulative_201501-202409.json: Contains total page view activity (desktop + mobile) for each article.
 2. rare-disease_monthly_desktop_201501-202409.json: Contains monthly desktop page view activity.
 3. rare-disease_monthly_mobile_201501-202409.json: Contains monthly mobile page view activity.
 
-Below is the data schema for the above three files.
+Each of the above file contain a dictionary with the disease as the key and a list of JSONs as the value. Each element in the JSON list has the below schema:
 
 ```Text
 {
@@ -73,5 +69,4 @@ Below is the data schema for the above three files.
 
 1. The API calls take quite sometime to run (around 30 minutes on a mac m1 with 8gb RAM). So patiently wait for it to be completed.
 2. The original data acquisition code from Dr. McDonald failed to encode '/' in article titles (e.g., 'Sulfadoxine/pyrimethamine'). I needed to add a safe parameter to the urllib.parse.quote method.The safe='' parameter ensures all characters, including '/', are encoded properly.
-
 3. API documentation changes many times with updates. In case of any issues, check the [Pageviews API](https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/reference/page-views.html) documentation for more details.
