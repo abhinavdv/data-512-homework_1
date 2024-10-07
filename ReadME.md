@@ -43,44 +43,10 @@ Executing Wikipedia_article_analysis.ipynb generates multiple time series datase
 - Content: Time series of monthly record data for each article.
 
 1. rare-disease_monthly_cumulative_201501-202409.json: Contains total page view activity (desktop + mobile) for each article.
-
-Data Schema:
-
-```Text
-{
-    string: [                         #Page title
-        {
-            "project": string,        #Wikimedia domain and subdomain
-            "article": string,        #Page title
-            "granularity": string,    #Time interval between datapoints
-            "timestamp": string,      #Timestamp in YYYYMMDDHH format
-            "agent": string,          #Type of user agent
-            "views": integer          #Number of page views
-        }
-  ]
-}
-```
-
 2. rare-disease_monthly_desktop_201501-202409.json: Contains monthly desktop page view activity.
+3. rare-disease_monthly_mobile_201501-202409.json: Contains monthly mobile page view activity.
 
-Data Schema:
-
-```Text
-{
-    string: [                         #Page title
-        {
-            "project": string,        #Wikimedia domain and subdomain
-            "article": string,        #Page title
-            "granularity": string,    #Time interval between datapoints
-            "timestamp": string,      #Timestamp in YYYYMMDDHH format
-            "agent": string,          #Type of user agent
-            "views": integer          #Number of page views
-        }
-  ]
-}
-```
-
-rare-disease_monthly_mobile_201501-202409.json: Contains monthly mobile page view activity.
+Below is the data schema for the above three files.
 
 ```Text
 {
@@ -99,25 +65,21 @@ rare-disease_monthly_mobile_201501-202409.json: Contains monthly mobile page vie
 
 ## Plots
 
-1. max_avg_min_avg.png: Graph showing articles with the highest and lowest average page requests for both desktop and mobile access.
-2. top_10_peak_page_views.png: Graph displaying the top 10 articles with the highest peak page views, categorized by access type.
-3. fewest_months_of_data.png: Graph illustrating the 10 articles with the fewest months of available data for both desktop and mobile access.
+1. max_min_avg_plot.png: Graph showing articles with the highest and lowest average page requests for both desktop and mobile access.
+2. top10_viewed_articles.png: Graph displaying the top 10 articles with the highest peak page views for desktop and mobile access types.
+3. least_months_of_data.png: Graph illustrating the 10 articles with the fewest months of available data for both desktop and mobile access.
 
 ## Issues faced/Special considerations
 
 1. The API calls take quite sometime to run (around 30 minutes on a mac m1 with 8gb RAM). So patiently wait for it to be completed.
 2. The original data acquisition code from Dr. McDonald failed to encode '/' in article titles (e.g., 'Sulfadoxine/pyrimethamine'). The original line of code:
 
-```text
 
 urllib.parse.quote(request*template['article'].replace(' ','*'))
-```
 
 was needed to be updated to:
 
-```text
 urllib.parse.quote(request*template['article'].replace(' ','*'), safe='')
-```
 
 Note: The safe='' parameter ensures all characters, including '/', are encoded properly.
 
