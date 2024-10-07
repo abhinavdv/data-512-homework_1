@@ -72,15 +72,6 @@ Below is the data schema for the above three files.
 ## Issues faced/Special considerations
 
 1. The API calls take quite sometime to run (around 30 minutes on a mac m1 with 8gb RAM). So patiently wait for it to be completed.
-2. The original data acquisition code from Dr. McDonald failed to encode '/' in article titles (e.g., 'Sulfadoxine/pyrimethamine'). The original line of code:
-
-
-urllib.parse.quote(request*template['article'].replace(' ','*'))
-
-was needed to be updated to:
-
-urllib.parse.quote(request*template['article'].replace(' ','*'), safe='')
-
-Note: The safe='' parameter ensures all characters, including '/', are encoded properly.
+2. The original data acquisition code from Dr. McDonald failed to encode '/' in article titles (e.g., 'Sulfadoxine/pyrimethamine'). I needed to add a safe parameter to the urllib.parse.quote method.The safe='' parameter ensures all characters, including '/', are encoded properly.
 
 3. API documentation changes many times with updates. In case of any issues, check the [Pageviews API](https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/reference/page-views.html) documentation for more details.
